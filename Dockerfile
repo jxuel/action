@@ -1,5 +1,5 @@
 # 1. Start with a "chef" image to manage dependency caching
-FROM lukemathwalker/cargo-chef:latest-rust-1.80 AS chef
+FROM lukemathwalker/cargo-chef:latest-rust-latest AS chef
 WORKDIR /app
 
 # 2. Planner stage: Prepare a "recipe" of your dependencies
