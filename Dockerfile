@@ -15,7 +15,7 @@ RUN cargo chef cook --release --recipe-path recipe.json
 
 # Build the actual application
 COPY . .
-RUN cargo build --release --bin your_project_name
+RUN cargo build --release --bin action
 
 # 4. Runtime stage: Use a minimal base image for the final container
 FROM debian:bookworm-slim AS runtime
@@ -25,7 +25,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y libssl3 ca-certificates && rm -rf /var/lib/apt/lists/*
 
 # Copy the binary from the builder stage
-COPY --from=builder /app/target/release/your_project_name /usr/local/bin/app
+COPY --from=builder /app/target/release/action /usr/local/bin/app
 
 # Set the environment and expose the port
 ENV RUST_LOG=info
